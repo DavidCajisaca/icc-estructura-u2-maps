@@ -1,7 +1,5 @@
-import controllers.Ejercicios;
-import controllers.EmpleadoContoller;
+import controllers.EmpleadoController;
 import controllers.Mapa;
-
 import models.Empleado;
 
 public class App {
@@ -18,11 +16,27 @@ public class App {
     }
 
     private static void runEmpleadoExample() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EmpleadoController empleadoContoller = new EmpleadoController();
+        boolean result = empleadoContoller.addEmpleado(new Empleado(1,"pablo","senior" ));
+        System.out.println("Ingreso "+ result);
+         result = empleadoContoller.addEmpleado(new Empleado(1,"pablo","senior" ));
+         System.out.println("Ingreso "+ result);
+         System.out.println("\nVerificar");
+         empleadoContoller.addEmpleado(new Empleado(1,"pablo","senior" ));
+         empleadoContoller.addEmpleado(new Empleado(2,"pab","senir" ));
+         empleadoContoller.addEmpleado(new Empleado(3,"pabo","ser" ));
+        System.out.println("\nLista de empleados");
+        empleadoContoller.displayEmpleados();
+        System.out.println("\nSolo por nombres");
+        empleadoContoller.displayEmpleadosNombres();
+        System.out.println("\nLlaves");
+        empleadoContoller.displayLlaves();
+        System.out.println("\nValores");
+        empleadoContoller.displayValores();
     }
 
     private static void runMapExamlpe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    new Mapa();
     }
 
     private static void runEjerccios() {
