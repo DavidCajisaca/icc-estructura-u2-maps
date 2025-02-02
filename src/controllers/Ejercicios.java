@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Ejercicios {
 
@@ -27,11 +28,30 @@ public class Ejercicios {
      * Explicación: Ambas cadenas tienen los mismos caracteres con la misma
      * frecuencia.
      */
-    public static boolean areAnagrams(String str1, String str2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+     public static boolean areAnagrams(String str1, String str2) {
+        // Si las longitudes son diferentes, no pueden ser anagramas
+        if (str1.length() != str2.length()) {
+            return false;
+        }
 
+        // Mapa para contar la frecuencia de los caracteres en str1
+        Map<Character, Integer> charCountMap = new HashMap<>();
+
+        // Contamos los caracteres de str1
+        for (char c : str1.toCharArray()) {
+            charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+        }
+
+        // Restamos la frecuencia usando los caracteres de str2
+        for (char c : str2.toCharArray()) {
+            if (!charCountMap.containsKey(c) || charCountMap.get(c) == 0) {
+                return false; // Un carácter no coincide en frecuencia
+            }
+            charCountMap.put(c, charCountMap.get(c) - 1);
+        }
+
+        return true; // Si todas las frecuencias llegan a 0, son anagramas
     }
-
     /*
      * Dado un array de números enteros y un objetivo, retorna los índices de dos
      * números para los que la suma de ambos sea igual al objetivo.
@@ -47,7 +67,27 @@ public class Ejercicios {
      * Input: nums = [9,2,3,6], objetivo = 10
      * Output: null
      */
-    public int[] sumatoriaDeDos(int[] nums, int objetivo) {
-        throw new UnsupportedOperationException("Not implemented yet");
+  
+        /**
+         * Encuentra dos números en el array cuya suma sea igual al objetivo.
+         * Retorna sus índices o null si no hay solución.
+         */
+        public int[] sumatoriaDeDos(int[] nums, int objetivo) {
+            Map<Integer, Integer> numMap = new HashMap<>();
+    
+            for (int i = 0; i < nums.length; i++) {
+                int complemento = objetivo - nums[i];
+    
+                if (numMap.containsKey(complemento)) {
+                    return new int[]{numMap.get(complemento), i};
+                }
+    
+                numMap.put(nums[i], i);
+            }
+    
+            return null; // No se encontró una pareja que cumpla la condición
+        }
+    
+        
     }
-}
+    
